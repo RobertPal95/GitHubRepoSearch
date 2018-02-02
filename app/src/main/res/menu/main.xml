@@ -2,7 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- cu asta vreau sa fac meniul -->
+    <!--
+    * cu asta vreau sa fac meniul
+    * ifRoom mi-l pune sus in meniu
+    * orderInCategory 1 mi-l pune primul (desi nu am altele, dar sa fie)
+    -->
     <item
         android:title="@string/search"
         android:orderInCategory="1"

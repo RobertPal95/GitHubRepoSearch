@@ -24,6 +24,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.datafrominternet.utilities.NetworkUtils;
+
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText mSearchBoxEditText;
@@ -38,6 +42,19 @@ public class MainActivity extends AppCompatActivity {
         mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
         mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+    }
+
+    // metoda nu e predefinta
+    /*
+    This method retrieves the search text from the EditText, constructs
+    the URL (using {@link NetworkUtils}) for the github repository you'd like to find, displays
+    that URL in a TextView, and finally fires off an AsyncTask to perform the GET request using
+    our (not yet created) {@link GithubQueryTask}
+    */
+    private void makeGithubSearchQuery() {
+        String githubQuery = mSearchBoxEditText.getText().toString();
+        URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+        mUrlDisplayTextView.setText(githubSearchUrl.toString());
     }
 
     // preiau informatiile din res/menu/main
@@ -60,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             Context context = MainActivity.this;
             String message = "Search clicked";
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            makeGithubSearchQuery(); // apelez functia de cautare
             return true;
         }
         return super.onOptionsItemSelected(item);
